@@ -1,5 +1,11 @@
 #include <iostream>
+#include <stdio.h>
+#include "ano_protocol.h"
 
-int main(int, char**){
-    std::cout << "Hello, from ano_protocol!\n";
+uint8_t testdata = 13;
+
+int main()
+{
+    
+    return 0;
 }
