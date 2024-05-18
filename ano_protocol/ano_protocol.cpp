@@ -1,6 +1,7 @@
 #include "ano_protocol.h"
 #include <stdio.h>
 
+uint8_t ANO_FRAME[ANO_FRAME_SIZE];
 // 将 int16_t 数据按小端模式写入数组
 void write_int16_le(uint8_t *buffer, int16_t data)
 {
@@ -10,6 +11,16 @@ void write_int16_le(uint8_t *buffer, int16_t data)
 
 /// @brief 将data变量拼接成匿名自由帧协议发送出去
 /// @param data 任意的需要分析的一个变量（这里是整形的int16变量）
+
+void Seial_Send(uint8_t * data)
+{
+    // CORE 此处增加发送函数，重定向到串口，发送到上位机
+    for (size_t i = 0; i < 8; i++)
+    {
+        printf("%02x,", data[i]);
+    }
+}
+
 void ANO_Convert_16(int16_t data)
 {
 
@@ -34,7 +45,8 @@ void ANO_Convert_16(int16_t data)
 
     ANO_FRAME[_index++] = sumcheck;
     ANO_FRAME[_index++] = addcheck;
-    // CORE 此处增加发送函数，重定向到串口，发送到上位机
+    Seial_Send(ANO_FRAME);
+
     // for (size_t i = 0; i < 8; i++)
     // {
     //     printf("%02x,", ANO_FRAME[i]);

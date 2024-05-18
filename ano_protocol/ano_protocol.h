@@ -6,7 +6,7 @@
 
 #define ANO_FRAME_SIZE 50
 
-uint8_t ANO_FRAME[ANO_FRAME_SIZE];
+extern uint8_t ANO_FRAME[ANO_FRAME_SIZE];
 
 void write_int16_le(uint8_t *buffer, int16_t data);
 
