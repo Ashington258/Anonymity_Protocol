@@ -1,6 +1,13 @@
 #include "ano_protocol.h"
 #include <stdio.h>
 
+// 将 int16_t 数据按小端模式写入数组
+void write_int16_le(uint8_t *buffer, int16_t data)
+{
+    buffer[0] = data & 0xFF;        // 写入低字节
+    buffer[1] = (data >> 8) & 0xFF; // 写入高字节
+}
+
 /// @brief 将data变量拼接成匿名自由帧协议发送出去
 /// @param data 任意的需要分析的一个变量（这里是整形的int16变量）
 void ANO_Convert_16(int16_t data)
@@ -101,12 +108,6 @@ void ANO_Conver_16_16_16(int16_t data_1, int16_t data_2, int16_t data_3)
     // }
 }
 
-// 将 int16_t 数据按小端模式写入数组
-void write_int16_le(uint8_t *buffer, int16_t data)
-{
-    buffer[0] = data & 0xFF;        // 写入低字节
-    buffer[1] = (data >> 8) & 0xFF; // 写入高字节
-}
 
 void IMU_DATA(int16_t _accx, int16_t _accy, int16_t _accz, int16_t _gryx, int16_t _gyy, int16_t _gryz, uint8_t _sta)
 {
