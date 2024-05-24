@@ -21,6 +21,13 @@ void Seial_Send(uint8_t * data)
     }
 }
 
+/**
+ * Converts a 16-bit signed integer to an anonymous free frame protocol and sends it.
+ *
+ * @param data the variable to be analyzed (currently an int16_t)
+ *
+ * @throws None
+ */
 void ANO_Convert_16(int16_t data)
 {
 
@@ -47,12 +54,15 @@ void ANO_Convert_16(int16_t data)
     ANO_FRAME[_index++] = addcheck;
     Seial_Send(ANO_FRAME);
 
-    // for (size_t i = 0; i < 8; i++)
-    // {
-    //     printf("%02x,", ANO_FRAME[i]);
-    // }
 }
 
+/**
+ * Converts a 32-bit signed integer to an anonymous free frame protocol and sends it.
+ *
+ * @param data the variable to be analyzed (currently an int32_t)
+ *
+ * @throws None
+ */
 void ANO_Convert_32(int32_t data)
 {
     uint8_t sumcheck = 0;
@@ -85,6 +95,15 @@ void ANO_Convert_32(int32_t data)
     // }
 }
 
+/**
+ * Converts three 16-bit integers into a frame and calculates the checksum.
+ *
+ * @param data_1 The first 16-bit integer to be converted.
+ * @param data_2 The second 16-bit integer to be converted.
+ * @param data_3 The third 16-bit integer to be converted.
+ *
+ * @throws None
+ */
 void ANO_Conver_16_16_16(int16_t data_1, int16_t data_2, int16_t data_3)
 {
     uint8_t sumcheck = 0;
@@ -121,6 +140,19 @@ void ANO_Conver_16_16_16(int16_t data_1, int16_t data_2, int16_t data_3)
 }
 
 
+/**
+ * Sends IMU data to the target address.
+ *
+ * @param _accx The x-axis acceleration data.
+ * @param _accy The y-axis acceleration data.
+ * @param _accz The z-axis acceleration data.
+ * @param _gryx The x-axis gyroscope data.
+ * @param _gyy The y-axis gyroscope data.
+ * @param _gryz The z-axis gyroscope data.
+ * @param _sta The status data.
+ *
+ * @throws None
+ */
 void IMU_DATA(int16_t _accx, int16_t _accy, int16_t _accz, int16_t _gryx, int16_t _gyy, int16_t _gryz, uint8_t _sta)
 {
     uint8_t imu_data[19];
